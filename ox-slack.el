@@ -5,7 +5,7 @@
 ;; Author: Matt Price
 ;; Keywords: org, slack
 
-Modeled o n
+;; Modeled on various other derived backends including 'ox-gfm by Lars Trier
 
 ;; This file is not part of GNU Emacs.
 
@@ -32,6 +32,18 @@ Modeled o n
 (require 'ox-gfm)
 
 (org-export-define-derived-backend 'slack 'gfm
+  ;; for now, I just have this commented out
+  ;; might be better to create a defcustom to
+  ;; decide whether to add this to the export dispatcher
+  ;; :menu-entry
+  ;; '(?s "Export to Slack syntax"
+  ;;      ((?s "To temporary buffer"
+  ;;           (lambda (a s v b) (org-slack-export-as-slack a s v)))
+  ;;       (?S "To file" (lambda (a s v b) (org-slack-export-to-slack a s v)))
+  ;;       (?o "To file and open"
+  ;;           (lambda (a s v b)
+  ;;             (if a (org-slack-export-to-slack t s v)
+  ;;               (org-open-file (org-slack-export-to-slack nil s v)))))))
   :translate-alist
   '(
     (bold . org-slack-bold)
@@ -338,6 +350,14 @@ Return output file's name."
     (org-export-to-file 'slack file
       async subtreep visible-only body-only ext-plist)))
 
+;;;###autoload
+(defun org-slack-export-to-clipboard-as-slack ()
+  "Export region to slack, and copy to the kill ring for pasting into other programs."
+  (interactive)
+  (let* ((org-export-with-toc nil)
+         (org-export-with-smart-quotes nil))
+    (kill-new (org-export-as 'slack) ))
+  )
 
 (provide 'ox-slack)
 

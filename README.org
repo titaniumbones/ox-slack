@@ -1,0 +1,16 @@
+* Org Slack format exporter
+
+This is a simple exporter backend for [[https://orgmode.org/][Emacs org-mode]], derived from the builtin markdown exporter & its derived backend [[https://github.com/larstvei/ox-gfm][ox-gfm.el]].  It produces simple text output suitable for pasting into a [[https://slack.com/][Slack]] client.  It works like most export backends, with two main differences:
+- at present, *this exporter is not added to the export dispatcher*. It's hard to see when it would be useful to make slack-formatted files.  Instead,
+- this package provides the interactive function ~org-slack-export-to-clipboard-as-slack~, which copies the region to the kill-ring in slack format. From there it should be easy to paste the resultant text into your slack client.  
+
+Since slack syntax is much poorer than Org's, I've made some arbitrary choices about how to degrade it. Headlines are exported as *bolded text* on their own lines, for instance.  
+
+There are probably lots of improvements possible. Please file issues in the Github repo or discuss in the org-mode mailing list. 
+
+ 
+* Melpa
+
+I'd love to put this in Melpa, but I haven't figured out how to do that.  If you really want me to do this, keep bugging me and I'll be more likely to remember!
+
+
