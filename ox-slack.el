@@ -1,11 +1,13 @@
-;;; ox-slack.el --- SLack Exporter for org-mode
+;;; ox-slack.el --- SLack Exporter for org-mode -*- lexical-binding: t; -*
+
 
 ;; Copyright (C) 2018 Matt Price
 
 ;; Author: Matt Price
-;; Keywords: org, slack
-
-;; Modeled on various other derived backends including 'ox-gfm by Lars Trier
+;; Keywords: org, slack, outlines
+;; Package-Version: 0.1
+;; Package-Requires ((org 9.1.4) (ox-gfm))
+;; URL: https://github.com/titaniumbones/ox-slack
 
 ;; This file is not part of GNU Emacs.
 
@@ -25,7 +27,7 @@
 ;;; Commentary:
 
 ;; This library implements a Slack backend for the Org
-;; exporter, based on the `ascii' back-end.
+;; exporter, based on the `md' and `gfm' back-ends.
 
 ;;; Code:
 
@@ -61,8 +63,9 @@
 
 ;; timestamp
 (defun org-slack-timestamp (timestamp contents info)
-  "Transcode TIMESTAMP element into Slck format. CONTENTS is the timestamp contents. 
-INFO is a plist used as a ocmmunications channel."
+  "Transcode TIMESTAMP element into Slack format.
+CONTENTS is the timestamp contents. INFO is a plist used as a
+ocmmunications channel."
   (let*
       ((value (org-html-plain-text (org-timestamp-translate timestamp) info)))
     value))
@@ -95,7 +98,7 @@ a communication channel."
 
 
 (defun org-slack-link (link contents info)
-  "Transcode LINE-BREAK object into Markdown format.
+  "Transcode LINK object into Markdown format.
 CONTENTS is the link's description.  INFO is a plist used as
 a communication channel."
   (let ((link-org-files-as-md
@@ -171,7 +174,7 @@ a communication channel."
 	    (format "*%s* (%s)" contents path)))))))
 
 (defun org-slack-verbatim (_verbatim contents _info)
-  "Transcode VERBATIM from Org to Slack. 
+  "Transcode VERBATIM from Org to Slack.
 CONTENTS is the text with bold markup. INFO is a plist holding
 contextual information."
   (format "`%s`" contents))
@@ -219,8 +222,8 @@ contextual information."
 
 
 (defun org-slack-src-block (src-block contents info)
-  "Transcode SRC-BLOCK element into Github Flavored Markdown
-format. CONTENTS is nil.  INFO is a plist used as a communication
+  "Transcode SRC-BLOCK element into Github Flavored Markdown format.
+CONTENTS is nil. INFO is a plist used as a communication
 channel."
   (let* ((lang (org-element-property :language src-block))
          (code (org-export-format-code-default src-block info))
