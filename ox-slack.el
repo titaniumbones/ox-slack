@@ -6,7 +6,7 @@
 ;; Author: Matt Price
 ;; Keywords: org, slack, outlines
 ;; Package-Version: 0.1
-;; Package-Requires: ((org 9.1.4) (ox-gfm))
+;; Package-Requires: ((org "9.1.4") (ox-gfm "1.0"))
 ;; URL: https://github.com/titaniumbones/ox-slack
 
 ;; This file is not part of GNU Emacs.
