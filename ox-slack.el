@@ -1,4 +1,4 @@
-;;; ox-slack.el --- Slack Exporter for org-mode -*- lexical-binding: t; -*
+;;; ox-slack.el --- Slack Exporter for org-mode -*- lexical-binding: t; -*-
 
 
 ;; Copyright (C) 2018 Matt Price
