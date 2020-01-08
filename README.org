@@ -11,6 +11,7 @@ There are probably lots of improvements possible. Please file issues in the Gith
  
 * Melpa
 
-I'd love to put this in Melpa, but I haven't figured out how to do that.  If you really want me to do this, keep bugging me and I'll be more likely to remember!
+Now available in MELPA! Install with ~package-install~ or just ~(use-package ox-slack)~
+
 
 
