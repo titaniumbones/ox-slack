@@ -60,11 +60,9 @@
     (timestamp . org-slack-timestamp)))
 
 ;; timestamp
-(defun org-slack-timestamp (timestamp contents info)
-  "Transcode TIMESTAMP element into Slack format.
-CONTENTS is the timestamp contents. INFO is a plist used as a
-ocmmunications channel."
-  (org-html-plain-text (org-timestamp-translate timestamp) info))
+(defun org-slack-timestamp (timestamp _contents _info)
+  "Transcode TIMESTAMP element into Slack format."
+  (org-timestamp-translate timestamp))
 
 ;; headline
 (defun org-slack-headline (headline contents info)
