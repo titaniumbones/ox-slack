@@ -34,18 +34,15 @@
 (require 'ox-gfm)
 
 (org-export-define-derived-backend 'slack 'gfm
-  ;; for now, I just have this commented out
-  ;; might be better to create a defcustom to
-  ;; decide whether to add this to the export dispatcher
-  ;; :menu-entry
-  ;; '(?s "Export to Slack syntax"
-  ;;      ((?s "To temporary buffer"
-  ;;           (lambda (a s v b) (org-slack-export-as-slack a s v)))
-  ;;       (?S "To file" (lambda (a s v b) (org-slack-export-to-slack a s v)))
-  ;;       (?o "To file and open"
-  ;;           (lambda (a s v b)
-  ;;             (if a (org-slack-export-to-slack t s v)
-  ;;               (org-open-file (org-slack-export-to-slack nil s v)))))))
+  :menu-entry
+  '(?s "Export to Slack syntax"
+       ((?S "To temporary buffer"
+            (lambda (a s v b) (org-slack-export-as-slack a s v)))
+        (?s "To file" (lambda (a s v b) (org-slack-export-to-slack a s v)))
+        (?o "To file and open"
+            (lambda (a s v b)
+              (if a (org-slack-export-to-slack t s v)
+                (org-open-file (org-slack-export-to-slack nil s v)))))))
   :translate-alist
   '(
     (bold . org-slack-bold)
