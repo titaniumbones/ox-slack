@@ -26,6 +26,28 @@
 
 ;;; Commentary:
 
+;; Compiling /Users/joetague/.emacs.d/elpa/29.0/develop/ox-slack-20230405.205440/ox-slack.el...
+
+;; In org-slack-headline:
+;; ox-slack.el:71:13: Warning: Unused lexical variable `level'
+;; ox-slack.el:77:13: Warning: Unused lexical variable `tags'
+;; ox-slack.el:86:13: Warning: Unused lexical variable `heading'
+
+;; In org-slack-code:
+;; ox-slack.el:176:39: Warning: Unused lexical argument `info'
+
+;; In org-slack-inline-src-block:
+;; ox-slack.el:207:63: Warning: Unused lexical argument `info'
+
+;; In org-slack-src-block:
+;; ox-slack.el:215:39: Warning: Unused lexical argument `contents'
+;; ox-slack.el:219:11: Warning: Unused lexical variable `lang'
+
+;; In org-slack-export-to-clipboard-as-slack:
+;; ox-slack.el:347:2: Warning: docstring wider than 80 characters
+
+;; In end of data:
+;; ox-slack.el:230:4: Warning: the function ‘org-slack--indent-string’ is not known to be defined.
 ;; This library implements a Slack backend for the Org
 ;; exporter, based on the `md' and `gfm' back-ends.
 
@@ -36,13 +58,9 @@
 (org-export-define-derived-backend 'slack 'gfm
   :menu-entry
   '(?s "Export to Slack syntax"
-       ((?S "To temporary buffer"
+       ((?s "To temporary buffer"
             (lambda (a s v b) (org-slack-export-as-slack a s v)))
-        (?s "To file" (lambda (a s v b) (org-slack-export-to-slack a s v)))
-        (?o "To file and open"
-            (lambda (a s v b)
-              (if a (org-slack-export-to-slack t s v)
-                (org-open-file (org-slack-export-to-slack nil s v)))))))
+        ))
   :translate-alist
   '(
     (bold . org-slack-bold)
